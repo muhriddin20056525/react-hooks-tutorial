@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import HookExample from "./components/HookExample";
+import DataFetcher from "./components/DataFetcher";
 
 function App() {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState("");
 
+  const [toggle, setToggle] = useState(true);
+
   return (
     <div>
-      {/* <p>You clicked {count} times</p>
-
-      <button onClick={() => setCount(count + 1)}>Increment</button> */}
-
       <input
         type="text"
         placeholder="Type something"
@@ -18,6 +18,10 @@ function App() {
       <p>
         You typed: <b>{inputValue}</b>
       </p>
+
+      {toggle && <HookExample />}
+      <button onClick={() => setToggle(!toggle)}>Toggle</button>
+      <DataFetcher />
     </div>
   );
 }
