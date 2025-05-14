@@ -194,3 +194,38 @@ export default UseLayoutEffect;
 ```
 
 - Bu yerda `useEffect` va `useLayoutEffect` orqali bir xil ish bajarilgan lekin birinchi bo'lib `useLayoutEffect` ishga tushadi uning ortidan esa `useEffect`
+
+---
+
+# **4-dars useRef**
+
+`useRef` — bu React hook bo‘lib, u DOM elementlarga murojaat qilish yoki komponentlar o‘rtasida o‘zgarmas qiymatlarni saqlash uchun ishlatiladi. U current degan property orqali qiymatni saqlaydi va komponent qayta render bo‘lsa ham shu qiymat o‘zgarishsiz qoladi.
+
+```jsx
+useEffect(() => {
+  // shifa yangilanganda ref bog'langan input aftamatiski focus holatiga o'tadi
+  inputRef.current && inputRef.current.focus();
+}, []);
+
+// useRef elon qilish
+const inputRef = useRef(null);
+
+// ref atributi orqali inputga bog'lash
+<input type="text" placeholder="Type something..." ref={inputRef} />;
+```
+
+- `useRef` yaratish va undan foydalanish
+
+```jsx
+const inputRef = useRef(null);
+
+const handleShowValue = () => {
+  // inputning qiymati shu yerda saqlanadi
+  alert(inputRef.current.value);
+};
+
+<input type="text" placeholder="Type something..." ref={inputRef} />
+<button onClick={handleShowValue}>Send</button>
+```
+
+- `useRef` orqali inputning qiymatini olish
