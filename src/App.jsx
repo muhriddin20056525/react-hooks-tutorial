@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
-import HookExample from "./components/HookExample";
-import DataFetcher from "./components/DataFetcher";
+import { useState } from "react";
+import UseLayoutEffectHook from "./components/useLayoutEffect/UseLayoutEffectHook";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-
   const [toggle, setToggle] = useState(true);
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Type something"
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <p>
-        You typed: <b>{inputValue}</b>
-      </p>
+      {/* ============================== useEffect ============================== */}
 
-      {toggle && <HookExample />}
+      {/* {toggle && <UseEffectHook />}
       <button onClick={() => setToggle(!toggle)}>Toggle</button>
-      <DataFetcher />
+      <DataFetcher /> */}
+
+      {/* ============================== useLayoutEffect ============================== */}
+      <UseLayoutEffectHook />
     </div>
   );
 }

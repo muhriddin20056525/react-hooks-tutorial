@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function HookExample() {
+function UseEffectHook() {
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ function HookExample() {
   return <p>Seconds elapsed: {second}</p>;
 }
 
-export default HookExample;
+export default UseEffectHook;

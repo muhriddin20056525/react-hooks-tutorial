@@ -158,3 +158,39 @@ export default DataFetcher;
 ```
 
 - `useState` va `useEffect` orqali `API` dan malumot olish va uni ekranga chiqarish
+
+---
+
+# **3-dars useLayoutEffect**
+
+`useLayoutEffect` — bu React hook bo‘lib, u component DOMga joylashtirilgandan darhol, lekin foydalanuvchiga ko‘rsatilishidan oldin ishlaydi. Bu hook asosan DOM o‘lchamlarini olish, scroll pozitsiyasini o‘rnatish yoki chizilishdan oldin DOM’ni o‘zgartirish uchun kerak bo‘ladi. useEffect dan farqli ravishda, bu effekt sinxron bajariladi, ya’ni React chizishni to‘xtatib turadi. Faqat kerak bo‘lsa ishlatiladi, aks holda useEffect kifoya.
+
+```ts
+import React, { useEffect, useLayoutEffect, useState } from "react";
+
+function UseLayoutEffect() {
+  const [effectValue, setEffectValue] = useState("initial");
+  const [layoutEffectValue, setLayoutEffectValue] = useState("initial");
+
+  useEffect(() => {
+    console.log("useEffect");
+    setEffectValue("Updated");
+  }, []);
+
+  useLayoutEffect(() => {
+    console.log("useLayoutEffect");
+    setLayoutEffectValue("Updated");
+  }, []);
+
+  return (
+    <div>
+      <p>useEffect value: {effectValue}</p>
+      <p>useLayoutEffect value: {layoutEffectValue}</p>
+    </div>
+  );
+}
+
+export default UseLayoutEffect;
+```
+
+- Bu yerda `useEffect` va `useLayoutEffect` orqali bir xil ish bajarilgan lekin birinchi bo'lib `useLayoutEffect` ishga tushadi uning ortidan esa `useEffect`
