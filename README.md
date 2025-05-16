@@ -229,3 +229,101 @@ const handleShowValue = () => {
 ```
 
 - `useRef` orqali inputning qiymatini olish
+
+---
+
+# **5-dars useContext**
+
+`useContext` — bu React hook bo‘lib, u context orqali berilgan ma’lumotni komponent ichida olishga imkon beradi. Bu hook yordamida prop drilling (ya’ni propni bir nechta komponentlar orqali uzatish)dan qochish mumkin. useContext context provider orqali berilgan qiymatni to‘g‘ridan-to‘g‘ri olishga yordam beradi
+
+```jsx
+// /components/useContext/ThemeContext.jsx
+
+import { createContext, useEffect, useState } from "react";
+
+// context yaratish
+export const ThemeContext = createContext();
+
+// provider yaratish shu provider orqali uning ichidagi componentlarga malumot uzatamiz
+export const ThemeProvider = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDarkMode ? "light" : "dark"
+    );
+  }, [isDarkMode]);
+
+  return (
+    // provider orqali uning ichidagi componentlarga malumot uzatish
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+// /components/useContext/ThemeSwitcher.jsx
+
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
+
+function ThemeSwitcher() {
+  // contextdan malumotlarni olish
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <div>
+      <button onClick={toggleTheme}>
+        Switch to {isDarkMode ? "Light" : "Dark"} Mode
+      </button>
+    </div>
+  );
+}
+
+export default ThemeSwitcher;
+
+// main.jsx
+
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { ThemeProvider } from "./components/useContact/ThemeContext.jsx";
+
+createRoot(document.getElementById("root")).render(
+  // Bu context provider shuning ichidagi sahifa yoki componentlargagina providerdan turib malmot uzata olamiz
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
+);
+
+
+// index.css
+
+// dark mode uchun css
+[data-theme="dark"] {
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+  --button-bg: #444444;
+  --button-text: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: 0.3s ease;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+}
+
+
+```
+
+- ushbu kodda `useState`, `useEffect` va `useContext` dan foydalanib darkmode va lightmode almashish loyihasi ko'rsatilgan

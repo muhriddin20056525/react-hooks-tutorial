@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UseLayoutEffectHook from "./components/useLayoutEffect/UseLayoutEffectHook";
 import UseRefHook from "./components/useRef/UseRefHook";
+import ThemeSwitcher from "./components/useContact/ThemeSwitcher";
 
 function App() {
   const [toggle, setToggle] = useState(true);
@@ -18,6 +19,10 @@ function App() {
 
       {/* ============================== useRef ============================== */}
       <UseRefHook />
+
+      <br />
+      {/* ============================== useContext ============================== */}
+      <ThemeSwitcher />
     </div>
   );
 }
