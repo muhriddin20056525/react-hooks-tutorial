@@ -1,8 +1,37 @@
-# React + Vite
+# ** useRef**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`useRef` — bu React hook bo‘lib, DOM elementlarga yoki o‘zgaruvchilarga havola (reference) saqlash uchun ishlatiladi. U komponent qayta render bo‘lsa ham, qiymatini yo‘qotmaydi.
 
-Currently, two official plugins are available:
+```jsx
+function App() {
+  const inputRef = useRef(null);
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus();
+  }, []);
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- ushbu holatda `App` componenti render bo'lganda input focus holatiga o'tadi
+
+```jsx
+const countRef = useRef(0);
+
+const increment = () => {
+  countRef.current += 1;
+  console.log("Ref count", countRef.current);
+};
+
+<p>Count: {countRef.current}</p>
+<button onClick={increment}>Click</button>
+```
+
+- `useRef` bilan `counter` yasash. Qiymatlar faqat `console` da o'zgaradi shifada emas chunki `useRef` componentni yangilamaydi
