@@ -1,8 +1,7 @@
-# React + Vite
+# **useDeferredValue**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`useDeferredValue` — bu React 18 dan boshlab qo‘shilgan hook bo‘lib, sekin yangilanadigan qiymatlarni kechiktirish (defer qilish) imkonini beradi. Bu asosan UI'da tez-tez o‘zgaradigan qiymatlar (masalan, input qidiruv) sababli yuzaga keladigan performance muammolarini kamaytirish uchun ishlatiladi.
 
-Currently, two official plugins are available:
+# **useDeferredValue nima qiladi?**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`useDeferredValue` komponentga kelayotgan qiymatni biroz kechiktiradi. Bu orqali `UX` yaxshilanadi, ayniqsa katta hajmdagi `UI` elementlar sekin yangilanayotgan bo‘lsa.
