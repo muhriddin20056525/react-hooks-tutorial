@@ -1,19 +1,7 @@
-import { useState } from "react";
-import List from "./components/List";
+import React from "react";
 
 function App() {
-  const [input, setInput] = useState("");
-
-  const handleChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  return (
-    <div>
-      <input type="text" value={input} onChange={handleChange} />
-      <List input={input} />
-    </div>
-  );
+  return <div>App</div>;
 }
 
 export default App;
